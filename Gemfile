@@ -49,6 +49,7 @@ group :development do
   gem "rubocop-rspec"
   gem "rspec-rails", "~> 4.0.1"
   gem "spring-commands-rspec"
+  gem "html2slim"
 end
 
 group :test do
@@ -61,3 +62,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "slim-rails"
