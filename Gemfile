@@ -64,3 +64,6 @@ end
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "slim-rails"
+gem "devise"
+gem "omniauth"
+gem "omniauth-genius"

@@ -1,0 +1,6 @@
+h1 Words in Lyrics
+
+= form_with url: searches_path, method: :get, local: true do |form|
+  = form.label "Type a Spanish word"
+  = form.text_field(:query)
+  = form.submit("Search")
