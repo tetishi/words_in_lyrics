@@ -5,23 +5,25 @@ class SearchesController < ApplicationController
   end
 
   def show
-    words = params[:q]
-    search_words = "q=#{words}"
+    # どの単語でも
+    # words = params[:q]
+    # search_words = "q=#{words}"
+
     params = URI.encode_www_form({search: "q=Kendrick%20Lamar"})
     token = "OWOAJA6tyCbNQKQBi3NUZkkY_xdtdZX3ZNTC-mXb_4g3Gwz7gGjqPprtaUs7VZNB"
     uri = URI.parse("https://api.genius.com/search?#{params}")
     @query = uri.query
 
-    # response = Net::HTTP.start(uri.host, uri.port) do |http|
-    #   http.open_timeout = 5
-    #   http.read_timeout = 10
-    #   http.get(uri.request_uri)
-    # end
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
+      http.open_timeout = 5
+      http.read_timeout = 10
+      http.get(uri.request_uri)
+    end
 　　# ここは動いてる
 
     req = Net::HTTP::Get.new(uri.request_uri)
-    req["Authorization"] = "bearer #{token}"
-    #Bearerかも
+    req["Authorization"] = "Bearer #{token}"
+    
     # Authorizationになにも入っていないから入れる
 
     req = http.request(req)
