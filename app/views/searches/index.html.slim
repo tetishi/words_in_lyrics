@@ -5,7 +5,10 @@ h1 Words in Lyrics
   = form.text_field(:query)
   = form.submit("Search")
 
-p full_itle: 
+
+/ = render partial: "searches/search", collection: @searches, as: :search
+
+p full_title: 
 = @full_title
 
 p header_image_thumbnail_url:
@@ -22,6 +25,12 @@ p song_art_image_url:
 
 p request paramter:
 = @query
+
+p title
+= @title
+
+p title_with_featured
+= @title_with_featured
 
 p result:
 = @result

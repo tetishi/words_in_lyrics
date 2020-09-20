@@ -42,12 +42,14 @@ class SearchesController < ApplicationController
       when Net::HTTPSuccess
         @result = JSON.parse(response.body)
         # 全部nilだからデータのとってきかたに問題がある
-        @search = @result["results"][0]["search"]
-        @full_title = @result["results"][0]["full_title"]
-        @header_image_thumbnail_url = @result["results"][0]["@header_image_thumbnail_url"]
-        @header_image_url = @result["results"][0]["header_image_url"]
-        @song_art_image_thumbnail_url = @result["results"][0]["song_art_image_thumbnail_url"]
-        @song_art_image_url = @result["results"][0]["song_art_image_url"]
+        # @search = @result["results"][0]["search"]
+        @full_title = @result["response"]["hits"][0]["result"]["full_title"]
+        @header_image_thumbnail_url = @result["response"]["hits"][0]["result"]["header_image_thumbnail_url"]
+        @header_image_url = @result["response"]["hits"][0]["result"]["header_image_url"]
+        @song_art_image_thumbnail_url = @result["response"]["hits"][0]["result"]["song_art_image_thumbnail_url"]
+        @song_art_image_url = @result["response"]["hits"][0]["result"]["song_art_image_url"]
+        @title = @result["response"]["hits"][0]["result"]["title"]
+        @title_with_featured = @result["response"]["hits"][0]["result"]["title_with_featured"]
       when Net::HTTPRedirection
         @message = "Redirection: code=#{response.code} message=#{response.message}"
       else
@@ -65,11 +67,10 @@ class SearchesController < ApplicationController
     # sounds = spotify.search(query)
     # @results = formatted(sounds)
   end
-  end
 
   def show
-    
   end
+end
 
 # private
 #   def formatted(response)
